@@ -14,6 +14,15 @@ int main(void)
   arbolb mid3 = nuevo_arbolb('+', &cuatro, &cinco);
   arbolb raiz = nuevo_arbolb('/', &mid3, &mid2);
 
+  /* 
+   *         / 
+   *    +        *
+   *  4   5     -  3
+   *           8 6
+   * 
+   */
+	
+
   prefijo(&raiz);
   putchar('\n');
 

@@ -5,37 +5,36 @@
 
 int main(void)
 {
-  vertice vertices[6];
-  vertices[0]	= nuevo_vertice('a');
-  vertices[1]	= nuevo_vertice('b');
-  vertices[2]	= nuevo_vertice('c');
-  vertices[3]	= nuevo_vertice('d');
-  vertices[4]	= nuevo_vertice('e');
-  vertices[5]	= nuevo_vertice('f');
+  digrafo ejemplo;
+  inicializar_digrafo(&ejemplo);
   
-  arista aristas[7];
-  aristas[0] = nueva_arista(&vertices[0], &vertices[2]);
-  aristas[1] = nueva_arista(&vertices[0], &vertices[1]);
-  aristas[2] = nueva_arista(&vertices[2], &vertices[2]);
-  aristas[3] = nueva_arista(&vertices[2], &vertices[3]);
-  aristas[4] = nueva_arista(&vertices[3], &vertices[1]);
-  aristas[5] = nueva_arista(&vertices[4], &vertices[5]);
-  aristas[6] = nueva_arista(&vertices[5], &vertices[4]);
-  
-  /*
-   * 
-   *    b
-   * a<    >d    e <-> f
-   *    c)   
-   *
-  */
-  
-  
-  printf("Matriz de Incidencia: \n");
-  incidencia(aristas, 7, vertices, 6);
+  vertice a = insertar_nuevo_vertice(&ejemplo, 'a');
+  vertice b = insertar_nuevo_vertice(&ejemplo, 'b');
+  vertice c = insertar_nuevo_vertice(&ejemplo, 'c');
+  vertice d = insertar_nuevo_vertice(&ejemplo, 'd');
+  vertice e = insertar_nuevo_vertice(&ejemplo, 'e');
+  vertice f = insertar_nuevo_vertice(&ejemplo, 'f');
 
-  printf("\nMatriz de Adyacencia: \n");
-  adyacencia(aristas, 7, vertices, 6);
+  insertar_nueva_arista(&ejemplo, &a, &b);
+  insertar_nueva_arista(&ejemplo, &c, &c);
+  insertar_nueva_arista(&ejemplo, &d, &b);
+  //insertar_nueva_arista(&ejemplo, &e, &f);
+  insertar_nueva_arista(&ejemplo, &a, &c);
+  insertar_nueva_arista(&ejemplo, &b, &f);
+  insertar_nueva_arista(&ejemplo, &c, &d);
+  insertar_nueva_arista(&ejemplo, &b, &e);
+  insertar_nueva_arista(&ejemplo, &e, &a);
+
+  printf("Matriz de Incidencia: \n");
+  incidencia(&ejemplo);
+
+  getchar();
+  printf("\n\nMatriz de Adyacencia: \n");
+  adyacencia(&ejemplo);
   
+  getchar();
+  printf("\n\nAlgun ciclo:\n");
+  printf("\n%s", existe_camino_euleriano(&ejemplo, &a) ? "Si" : "No" );
+    
   return 0;
 }

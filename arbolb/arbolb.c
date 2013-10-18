@@ -19,8 +19,7 @@ arbolb nueva_hoja(char nodo)
   arbolb nuevo = {
     .nodo = nodo,
     .arbolderecho = NULL,
-    .arbolizquierdo = NULL,
-     
+    .arbolizquierdo = NULL,   
   };
 
   return nuevo;

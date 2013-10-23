@@ -9,10 +9,11 @@ struct arbolb {
 	arbolb *arbolizquierdo;
 };
 
+// Inicializacion
 arbolb nuevo_arbolb(char nodo, arbolb *arbolderecho, arbolb *arbolizquierdo);
 arbolb nueva_hoja(char nodo);
 
-//Recorridos
+// Recorridos
 void prefijo(arbolb *a);
 void posfijo(arbolb *a);
 void infijo(arbolb *a);

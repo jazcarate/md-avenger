@@ -27,8 +27,12 @@ vertice insertar_nuevo_vertice(digrafo *d, char nodo);
 void incidencia(digrafo *d);
 void adyacencia(digrafo *d);
 
+bool criterio_grafo(vertice* desde, vertice* hasta, vertice* viajante, vertice** otro);
+bool criterio_digrafo(vertice* desde, vertice* hasta, vertice* viajante, vertice** otro);
+
 bool existe_camino_unitario(digrafo *d, vertice *desde, vertice *hasta);
-bool existe_camino_euleriano(digrafo *d, vertice *viajante);
+bool existe_camino_euleriano(digrafo *d, vertice *viajante,
+			bool (*criterio)(vertice*, vertice*, vertice*,vertice**));
 
 int cantidad_no_visitadas(digrafo *d);
 

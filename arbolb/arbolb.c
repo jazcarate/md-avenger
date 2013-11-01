@@ -16,13 +16,7 @@ arbolb nuevo_arbolb(char nodo, arbolb *d, arbolb *i)
 
 arbolb nueva_hoja(char nodo)
 {
-  arbolb nuevo = {
-    .nodo = nodo,
-    .arbolderecho = NULL,
-    .arbolizquierdo = NULL,   
-  };
-
-  return nuevo;
+  return nuevo_arbolb(nodo, NULL, NULL);
 }
 
 void prefijo(arbolb *a)
@@ -61,7 +55,7 @@ bool es_hoja(arbolb *a)
 double evaluar(arbolb *a)
 {
   if (es_hoja(a)) {
-    return a->nodo - '0';	//Pasar de char a int (solo valores de 0 a 9)
+    return a->nodo - '0';
   }
 
   switch (a->nodo) {

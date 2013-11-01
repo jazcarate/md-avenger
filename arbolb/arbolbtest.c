@@ -3,11 +3,11 @@
 
 int main(void)
 {
-  arbolb tres = nueva_hoja('3');
+  arbolb tres   = nueva_hoja('3');
   arbolb cuatro = nueva_hoja('4');
-  arbolb cinco = nueva_hoja('5');
-  arbolb seis = nueva_hoja('6');
-  arbolb ocho = nueva_hoja('8');
+  arbolb cinco  = nueva_hoja('5');
+  arbolb seis   = nueva_hoja('6');
+  arbolb ocho   = nueva_hoja('8');
   
   arbolb mid1 = nuevo_arbolb('-', &ocho, &seis);
   arbolb mid2 = nuevo_arbolb('*', &mid1, &tres);

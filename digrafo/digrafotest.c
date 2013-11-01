@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include "digrafo.h"
 
-#define tamanio(x) (sizeof(x))/(sizeof(x[0]))
-
 int main(void)
 {
   digrafo ejemplo;
@@ -15,18 +13,18 @@ int main(void)
   vertice e = insertar_nuevo_vertice(&ejemplo, 'e');
 
 
-  /*
+  
   vertice f = insertar_nuevo_vertice(&ejemplo, 'f');
   vertice g = insertar_nuevo_vertice(&ejemplo, 'g');
   vertice h = insertar_nuevo_vertice(&ejemplo, 'h');
 
-  insertar_nueva_arista(&ejemplo, &d, &e);
-  insertar_nueva_arista(&ejemplo, &b, &e);
-  insertar_nueva_arista(&ejemplo, &f, &g);
-  insertar_nueva_arista(&ejemplo, &d, &g);
-  insertar_nueva_arista(&ejemplo, &f, &h);
-  insertar_nueva_arista(&ejemplo, &c, &h);
-  */
+  insertar_nueva_arista(&ejemplo, &b, &g);
+  insertar_nueva_arista(&ejemplo, &g, &d);
+  insertar_nueva_arista(&ejemplo, &c, &f);
+  insertar_nueva_arista(&ejemplo, &f, &e);
+  insertar_nueva_arista(&ejemplo, &e, &h);
+  insertar_nueva_arista(&ejemplo, &d, &h);
+  
 
   insertar_nueva_arista(&ejemplo, &a, &b);
   insertar_nueva_arista(&ejemplo, &a, &c);
@@ -42,11 +40,11 @@ int main(void)
   printf("Matriz de Incidencia: \n");
   incidencia(&ejemplo);
 
-  //getchar();
+  getchar();
   printf("\n\nMatriz de Adyacencia: \n");
   adyacencia(&ejemplo);
   
-  //getchar();
+  getchar();
   printf("\n\nAlgun ciclo empezando por \"d\"?:\n");
   printf("\n%s", existe_camino_euleriano(&ejemplo, &d, &criterio_digrafo) ? "Si" : "No" );
     

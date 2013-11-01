@@ -7,8 +7,8 @@ arbolb nuevo_arbolb(char nodo, arbolb *d, arbolb *i)
 {
   arbolb nuevo = {
     .nodo = nodo,
-    .arbolderecho = d,
-    .arbolizquierdo = i,
+    .arbolizquierdo = d,
+    .arbolderecho = i,
   };
 
   return nuevo;
@@ -29,16 +29,16 @@ void prefijo(arbolb *a)
 {
   if (a != NULL) {
     printf("%c ", a->nodo);
-    prefijo(a->arbolderecho);
     prefijo(a->arbolizquierdo);
+    prefijo(a->arbolderecho);
   }
 }
 
 void posfijo(arbolb *a)
 {
   if (a != NULL) {
-    posfijo(a->arbolderecho);
     posfijo(a->arbolizquierdo);
+    posfijo(a->arbolderecho);
     printf("%c ", a->nodo);
   }
 }
@@ -46,9 +46,9 @@ void posfijo(arbolb *a)
 void infijo(arbolb *a)
 {
   if (a != NULL) {
-    infijo(a->arbolderecho);
-    printf("%c ", a->nodo);
     infijo(a->arbolizquierdo);
+    printf("%c ", a->nodo);
+    infijo(a->arbolderecho);
   }
 }
 
@@ -66,16 +66,16 @@ double evaluar(arbolb *a)
 
   switch (a->nodo) {
     case '+':
-      return evaluar(a->arbolderecho) + evaluar(a->arbolizquierdo);
+      return evaluar(a->arbolizquierdo) + evaluar(a->arbolderecho);
       break;
     case '-':
-      return evaluar(a->arbolderecho) - evaluar(a->arbolizquierdo);
+      return evaluar(a->arbolizquierdo) - evaluar(a->arbolderecho);
       break;
     case '*':
-      return evaluar(a->arbolderecho) * evaluar(a->arbolizquierdo);
+      return evaluar(a->arbolizquierdo) * evaluar(a->arbolderecho);
       break;
     case '/':
-      return evaluar(a->arbolderecho) / evaluar(a->arbolizquierdo);
+      return evaluar(a->arbolizquierdo) / evaluar(a->arbolderecho);
       break;
     default:
       perror("ERROR: Operador invalido");

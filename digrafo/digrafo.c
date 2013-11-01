@@ -15,7 +15,6 @@ vertice insertar_nuevo_vertice(digrafo *d, char nodo) {
 	return d->vertices[d->cantidad_vertices++] = nodo;
 }
 
-//FIXME: No me acuerdo si es asi, o estan invertidos los fors :S
 void incidencia(digrafo *d) {
 	int i, j;
 	printf("  \tA R I S T A S");
@@ -24,9 +23,9 @@ void incidencia(digrafo *d) {
 		for (j = 0; j < d->cantidad_aristas; j++) {
 			printf("%s | ",
 					(*(d->aristas[j].desde) == d->vertices[i]) ?
-							" 1" :
+							"-1" :
 							((*(d->aristas[j].hasta) == d->vertices[i]) ?
-									"-1" : " 0"));
+									" 1" : " 0"));
 		}
 	}
 }

@@ -87,7 +87,7 @@ void imprimirMatriz(const funciones* funciones){
 		printf("\n(%s)f%d)", funciones->datos[i], i);
 		for(j=0; j<fact; j++){
 			//Armar la matriz
-			char* tmp = aplicar(funciones->original, funciones->datos[i], funciones->datos[j]);
+			char* tmp = aplicar(funciones->original, funciones->datos[j], funciones->datos[i]);
 			printf("\t(%s)f%d", tmp, buscarPunteros(tmp, funciones->datos));
 		}
 	}

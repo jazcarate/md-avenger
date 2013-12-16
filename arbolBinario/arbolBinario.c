@@ -1,11 +1,11 @@
-#include "arbolb.h"
+#include "arbolBinario.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
 
-arbolb nuevo_arbolb(char nodo, arbolb *d, arbolb *i)
+arbolBinario nuevo_arbolBinario(char nodo, arbolBinario *d, arbolBinario *i)
 {
-  arbolb nuevo = {
+  arbolBinario nuevo = {
     .nodo = nodo,
     .arbolizquierdo = d,
     .arbolderecho = i,
@@ -14,12 +14,12 @@ arbolb nuevo_arbolb(char nodo, arbolb *d, arbolb *i)
   return nuevo;
 }
 
-arbolb nueva_hoja(char nodo)
+arbolBinario nueva_hoja(char nodo)
 {
-  return nuevo_arbolb(nodo, NULL, NULL);
+  return nuevo_arbolBinario(nodo, NULL, NULL);
 }
 
-void prefijo(arbolb *a)
+void prefijo(arbolBinario *a)
 {
   if (a != NULL) {
     printf("%c ", a->nodo);
@@ -28,7 +28,7 @@ void prefijo(arbolb *a)
   }
 }
 
-void posfijo(arbolb *a)
+void posfijo(arbolBinario *a)
 {
   if (a != NULL) {
     posfijo(a->arbolizquierdo);
@@ -37,7 +37,7 @@ void posfijo(arbolb *a)
   }
 }
 
-void infijo(arbolb *a)
+void infijo(arbolBinario *a)
 {
   if (a != NULL) {
     infijo(a->arbolizquierdo);
@@ -47,12 +47,12 @@ void infijo(arbolb *a)
 }
 
 
-bool es_hoja(arbolb *a)
+bool es_hoja(arbolBinario *a)
 {
   return !a->arbolderecho && !a->arbolizquierdo;
 }
 
-double evaluar(arbolb *a)
+double evaluar(arbolBinario *a)
 {
   if (es_hoja(a)) {
     return a->nodo - '0';

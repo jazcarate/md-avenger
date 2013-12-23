@@ -9,19 +9,19 @@
 regla conocimiento[REGLAS] = {
 
 		{
-				.regex = "^\\((.+) o (.+)\\) y (\\1|\\2)",
+				.regex = "\\((.+) o (.+)\\) y (\\1|\\2)",
 				.nombre = "Absorcion",
 				.remplazo = 3,
 		},
 		{
-				.regex = "^(.+) (y|o) \\1",
-				.nombre = "Idempotencia",
-				.remplazo = 1,
+				.regex = "\\((.+) y (.+)\\) o (\\1|\\2)",
+				.nombre = "Absorcion",
+				.remplazo = 3,
 		},
 		{
-				.regex = "^\\((.+) y (.+)\\) o (\\1|\\2)",
-				.nombre = "Absorcion2",
-				.remplazo = 3,
+				.regex = "(.+) (y|o) \\1",
+				.nombre = "Idempotencia",
+				.remplazo = 1,
 		},
 };
 

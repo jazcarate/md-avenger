@@ -14,7 +14,7 @@ regla conocimiento[REGLAS] = {
 				.remplazo = 3,
 		},
 		{
-				.regex = "(.+) (y|o) \\1",
+				.regex = "^(.+) (y|o) \\1",
 				.nombre = "Idempotencia",
 				.remplazo = 1,
 		},
@@ -108,7 +108,7 @@ string simplificar(const string cadena){
 
 
 	for(reglaActual=0; reglaActual<REGLAS; reglaActual++){
-		char* retorno = regex(retorno, conocimiento[reglaActual], &cambio);
+		retorno = regex(retorno, conocimiento[reglaActual], &cambio);
 	}
 
 	return retorno;

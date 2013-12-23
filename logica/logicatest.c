@@ -14,7 +14,8 @@ int main(int argc, char **argv) {
 
 	//"v y ((f y (f y v)) o v)"
 
-	printf(">> %s\n", parse("f o f", simplificar));
+	printf(">> %s\n", parse("v y ((f y (f y v)) o v)", simplificar));
+
 
 	//evaluar || simplificar
 

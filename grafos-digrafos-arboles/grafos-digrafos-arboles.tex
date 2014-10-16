@@ -1,11 +1,12 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper,twocolumn]{article}
 
 \usepackage[T1]{fontenc}
 %\usepackage{fourier} % Font de Adobe Utopia
 \usepackage[spanish]{babel}
-\usepackage{amsmath,amsfonts,amsthm}
-
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
 \usepackage{sectsty}
+\usepackage[none]{hyphenat} % No romper palabras
+
 \allsectionsfont{\centering \normalfont\scshape} % Secciones grandes y centradas
 \usepackage{hyperref} % Links
 
@@ -27,7 +28,7 @@
 
 \title{	
 \normalfont \normalsize 
-\textsc{UTN FRBA - Matematica Discreta} \\ [25pt]
+\textsc{UTN FRBA - Matem\'atica Discreta} \\ [25pt]
 \horrule{0.5pt} \\[0.4cm] % Finito arriba
 \huge Grafos, D\'igrafos y \'Arboles \\ % TTitulo
 \horrule{2pt} \\[0.5cm] % Gordo abajo
@@ -45,8 +46,7 @@
 %------------------------------------------------------------------------------
 
 \section{Grafos}
-Conjunto de puntos o \emph{nodos} unidos por arcos o aristas.\\
-Un grafo se describe con una terna $(V,A,\varphi)$, siendo:
+Conjunto de puntos o \emph{nodos} unidos por arcos o aristas. Un grafo se describe con una terna $(V,A,\varphi)$ siendo:
 
 \begin{itemize}
 	\item $V$: Conjunto de v\'ertices
@@ -56,23 +56,23 @@ Un grafo se describe con una terna $(V,A,\varphi)$, siendo:
 
 \subsection{V\'ertices}
 \begin{description}
-	\item[V\'ertices adyacentes] $v_i$ es adyacente a $v_j \iff \exists a_k \in A \talque \varphi(a_k)=\{v_i,v_j\}$
-    \item[V\'ertices aislados] $v_k$ es aislado $\iff \not \exists a_k \in A \talque v_k \in \varphi(a_k)$
-    \item[Istom]\label{istmo} $v$ es istmo $\iff G$ es conexo\refa{conexo} $\Rightarrow G' = (V - \{v\},A,\varphi/_{V-\{v\}})$ no es conexo\refa{conexo}
+	\item[V\'ertices adyacentes] $v_i$ es adyacente a $v_j \iff \\ \iff \exists a_k \in A \talque \varphi(a_k)=\{v_i,v_j\}$
+    \item[V\'ertices aislados] $v_k$ es aislado $ \iff \\ \iff \nexists a_k \in A \talque v_k \in \varphi(a_k)$
+    \item[Istom]\label{istmo} $v$ es istmo $\iff G$ es conexo\refa{conexo} $\Rightarrow \\ \Rightarrow G' = (V - \{v\},A,\varphi/_{V-\{v\}})$ no es conexo\refa{conexo}
 \end{description}
 
 \subsection{Aristas}
 \begin{description}
-	\item[Aristas paralelas]\label{paralela} $a_i$ es paralela a $a_j \iff \varphi(a_i) = \varphi(a_j)$
+	\item[Aristas paralelas]\label{paralela} $a_i$ es paralela a $a_j \iff \\ \iff \varphi(a_i) = \varphi(a_j)$
     \item[Aristas adyacentes]\label{adyacente} $a_i$ es adyacente a $a_j \iff \\ \iff \exists v_k \in V \talque v_k \in \varphi(a_i) \land v_k \in \varphi (a_j)$
     \item[Bucle \emph{o lazo}]\label{bucle} $a_k$ es un bucle $\iff |\varphi(a_k)| = 1$
     \item[Aristas incidentes a un v\'ertice]\label{incidente} $a_i$ y $a_j$ son incidentes en el v\'ertice $v \iff \\ \iff v \in \varphi(a_i) \land v \in \varphi(a_j)$
-    \item[Grado o \emph{valencia} de un v\'ertice]\label{grado} $g: V \to \mathbb{Z} \talque g(v_i) = $ cantidad de aristas incidentes\refa{incidente}\\
+    \item[Grado o \emph{valencia} de un v\'ertice]\label{grado} $g: V \to \mathbb{Z}$ \\ $g(v_i) = $ cantidad de aristas incidentes\refa{incidente}\\
     	\emph{Nota: Los bucles se cuentan doblemente}
         $$
         	\sum_i g(v_i) = 2 |A|
         $$
-	\item[Puente]\label{puente} $a$ es puente $\iff G$ es conexo\refa{conexo} $\Rightarrow G'=(V,A-\{a\},\varphi/_{A-\{a\}) }$ no es conexo\refa{conexo}
+	\item[Puente]\label{puente} $a$ es puente $\iff G$ es conexo\refa{conexo} $\Rightarrow \\ \Rightarrow G'=(V,A-\{a\},\varphi/_{A-\{a\}})$ no es conexo\refa{conexo}
     \item[Conjunto desconectante]\label{desconectante} Un conjunto de puentes\refa{puente}
     \item[Conjunto de corte] M\'inimo conjunto desconectante\refa{desconectante}
 \end{description}
@@ -80,17 +80,17 @@ Un grafo se describe con una terna $(V,A,\varphi)$, siendo:
 \subsection{Grafos Particulares}
 \begin{description}
 	\item[Grafo simple] No tiene aristas paralelas\refa{paralela} ni bucles\refa{bucle}
-    \item[Grafo $K$-regular] $G$ es $K$-Regular $\iff K \in \mathbb{N}_0 \land \forall v \in V : g(v) = k$
-    \item[Grafo completo] $(K_n) \; \forall v,w \in V, v \not = w, \exists a \in A \talque \varphi(a) = \{v, w\}$
-    \item[Grafo bipartito] $V = V_1 \bigcup V_2, \; V_1 \not = \phi \land V_2 \not = \phi \land \forall a_i \in A \talque \\ \varphi(a_i)=\{v_j, v_k\},\; v_j \in V_1 \land v_k \in V2$
-    \item[Subgrafos]\label{subgrafo} $G' = (V', A', \varphi/_{A'}) \talque V' \subseteq V \land A' \subseteq A$
+    \item[Grafo $\mathcal{K}$-regular] $G$ es $\mathcal{K}$-regular $\iff \mathcal{K} \in \mathbb{N}_0 \land \forall v \in V : g(v) = \mathcal{K}$
+    \item[Grafo completo] $(K_n) \\ \forall v,w \in V, v \not = w, \exists a \in A \talque \varphi(a) = \{v, w\}$
+    \item[Grafo bipartito] $V = V_1 \bigcup V_2, \; V_1 \not = \phi \\ V_2 \not = \phi,\; V1 \bigcap V2 = \phi,\; \forall a_i \in A \talque \\ \varphi(a_i)=\{v_j, v_k\},\; v_j \in V_1 \land v_k \in V2$
+    \item[Subgrafos]\label{subgrafo} $G' = (V', A', \varphi') \talque \\ V' \subseteq V, \; A' \subseteq A, \; \varphi': A' \to \mathcal{V'} $
     \item[Componente conexa]\label{componente conexa} Son las clases de equivalencia de la relaci\'on $R: v_i R v_k \iff \\ \iff \exists$ un camino\refa{camino} de $v_i$ a $v_j \lor v_i = v_j$
     \item[Grafo Conexo] \label{conexo}Un grafo con una \'unica componente conexa\refa{componente conexa}
     \item[Conectividad] El menor n\'umero de istmos\refa{istmo}
     \item[Grafos planos] Grafo que se puede dibujar sin que se crucen aristas
 \end{description}
 
-\subsection{Caminos y Cliclos}
+\subsection{Caminos y Ciclos}
 \begin{description}
 	\item[Camino]\label{camino} Sucesi\'on de aristas adyacentes\refa{adyacente} distintas
     \item[Ciclo \emph{o circuito}]\label{ciclo} Camino\refa{camino} cuyo v\'ertice inicial conicide con el final
@@ -101,7 +101,7 @@ Un grafo se describe con una terna $(V,A,\varphi)$, siendo:
     	\\ CNyS:
         	\begin{itemize}
             	\item Ser conexo\refa{conexo}
-                \item $\forall v_i : g(v_i) = 2k; k \in \mathbb{n}$ o a lo sumo dos v\'ertices de grado\refa{grado} impar
+                \item $\forall v_i : g(v_i) = 2k; k \in \mathbb{N}$ o a lo sumo dos v\'ertices de grado\refa{grado} impar
             \end{itemize}
    \item[Ciclo euleriano] Ciclo\refa{ciclo} que pasa por \emph{todas} las aristas \emph{una sola vez}
         	\\ CNyS:
@@ -114,14 +114,14 @@ Un grafo se describe con una terna $(V,A,\varphi)$, siendo:
 
 \subsection{Representaci\'on Matricial}
 \begin{description}
-	\item[Matriz de incidencia] $Ma_{ij}^{|V|x|A|} = \left\{
+	\item[Matriz de incidencia] $Mi^{|V|x|A|} \\ a_{ij} = \left\{
 \begin{array}{c l}
  1 & v_i\textup{ es incidente\refa{incidente} a } a_j\\
  0 & v_i\textup{ no es incidente\refa{incidente} a } a_j\\
 \end{array}
 \right.
 $
-    \item[Matriz de adyacencia]$Ma_{ij}^{|V|x|V|} = \left\{
+    \item[Matriz de adyacencia]$Ma^{|V|x|V|} \\ a_{ij} = \left\{
 \begin{array}{c l}
  1 & v_i\textup{ es adyacente\refa{adyacente} a } v_j\\
  0 & v_i\textup{ no es adyacente\refa{adyacente} a } v_j\\
@@ -132,7 +132,7 @@ $
 
 \subsection{Isomorfismo}\label{isomorfo}
 Dado $G_1 = (V_1, A_1, \varphi_1)$ y $G_2 = (V_2, A_2, \varphi_2)$ \\
-$G_1$ es isomorfo a $G_1 \iff \exists f:V_1 \to V_2 \land h: A_1 \to A_2$ ambas funciones biyectivas y $\forall a \in A_1 \talque \varphi_2( \;h(a) \;) = f(\; \varphi(a) \;)$
+$G_1$ es isomorfo a $G_2 \iff \\ \iff \exists f:V_1 \to V_2 \,\land \,h : A_1 \to A_2$ , ambas funciones biyectivas y $\forall a \in A_1 \talque \varphi_2\big{(} h(a) \big{)} = f\big{(} \varphi_1(a) \big{)}$
 
 \subsection{Teorema de Kuratowski}
 Un grafo es plano $\iff$ no contiene ning\'un subgrafo\refa{subgrafo} isomorfo\refa{isomorfo} al $K_{3,3}$ o al $K_5$
@@ -153,9 +153,8 @@ Un grafo se describe con una terna $(V,A,\delta )$, siendo:
 
 \subsection{Aristas}
 \begin{description}
-	\item[Aristas paralelas] $a_i$ es paralela a $a_j \iff \delta(a_i) = \delta(a_j)$
-    \item[Aristas antiparalelas] $a_i$ es antiparalela a $a_j \iff \\ \iff \delta(a_i) = (v_1, v_2) \Rightarrow  \delta(a_j) = (v_2, v_1)$
-    \item[Aristas adyacentes] $a_i$ es adyacente a $a_j \iff \\ \iff \exists v_k \in V \talque \delta(a_i) = (x, v_k) \land \delta (a_j) = (v_k, y) \lor a_j$ es adyacente a $a_i$
+	\item[Aristas paralelas] $a_i$ es paralela a $a_j \iff \\ \iff \delta(a_i) = \delta(a_j)$
+    \item[Aristas antiparalelas] $a_i$ es antiparalela a $a_j \\ \iff \delta(a_i) = (v_1, v_2) \Rightarrow  \delta(a_j) = (v_2, v_1)$
     \item[Bucle \emph{o lazo}] $a_k$ es un bucle $\iff \delta(a_k) = (v,v)$
 	\item[Grado positivo ($g^+$)] Cantidad de aristas que ``\emph{entran}'' al v\'ertice
     \item[Grado negativo ($g^-$)] Cantidad de aristas que ``\emph{salen}'' del v\'ertice
@@ -174,7 +173,7 @@ $$
 \subsection{D\'igrafos Particulares}
 \begin{description}
 	\item[D\'igrafos conexo] Aquel cuyo grafo asociado sea conexo\refa{conexo}
-    \item[D\'igrafos fuertemente conexo] $\exists$ Camino\refa{camino} entre todo par de v\'ertices
+    \item[D\'igrafos fuertemente conexo] $\forall$ par de v\'ertices, $\exists$ un camino\refa{camino} entre ellos
 \end{description}
 
 \subsection{Caminos y Ciclos}
@@ -185,7 +184,7 @@ Se debe respetar el sentido de las aristas
 
 \subsection{Representaci\'on Matricial}
 \begin{description}
-	\item[Matriz de incidencia] $Ma_{ij}^{|V|x|A|} = \left\{
+	\item[Matriz de incidencia] $Mi^{|V|x|A|} \\ a_{ij} = \left\{
 \begin{array}{c l}
  1 & \exists v_x \in V \talque \delta(a_j) = (v_i, v_x)\\
  -1 & \exists v_x \in V \talque \delta(a_j) = (v_x, v_i)\\
@@ -193,10 +192,10 @@ Se debe respetar el sentido de las aristas
 \end{array}
 \right.
 $
-    \item[Matriz de adyacencia]$Ma_{ij}^{|V|x|V|} = \left\{
+    \item[Matriz de adyacencia]$Ma^{|V|x|V|} \\ a_{ij}= \left\{
 \begin{array}{c l}
  1 & \exists a \in A \talque \delta(a) = (v_i, v_j)\\
- 0 & \not \exists a \in A \talque \delta(a) = (v_i, v_j)\\
+ 0 & \nexists a \in A \talque \delta(a) = (v_i, v_j)\\
 \end{array}
 \right.
 $
@@ -215,14 +214,45 @@ Grafo conexo y sin ciclos\\
 \end{itemize}
 \begin{description}
 	\item[Hoja] $g(v) = 1$
-    \item[Antecesor] $v$ es antecesor de $w \iff \exists ! $ camino simple\refa{camino simple} de $v$ a $w$
-    \item[Sucesor] $v$ es sucesor de $w \iff w$ es antecesor de $v$
-    \item[Padre] $v$ es padre de $w \iff \exists a_k \talque \varphi(a_k) = \{v, w\}$
+\end{description}
+\subsection{\'Arbol Dirigido}
+\begin{description}
+    \item[Antecesor] $v$ es antecesor de $w \iff \\ \iff \exists ! $ camino simple\refa{camino simple} de $v$ a $w$
+    \item[Sucesor] $v$ es sucesor de $w \iff \\ \iff w$ es antecesor de $v$
+    \item[Padre] $v$ es padre de $w \iff \exists a_k \talque \delta(a_k) = (v, w)$
     \item[Hijo] $v$ es hijo de $w \iff w$ es padre de $v$
-    \item[Hermanos] $v$ es hermano de $w \iff v \land w$ tienen el mismo padre
-    \item[Nivel] Cuantos padres tiene hasta llegar a la raiz
+    \item[Hermanos] $v$ es hermano de $w \iff v$ y $w$ tienen el mismo padre
+    \item[Nivel] Cantidad de padres tiene hasta llegar a la raiz
     \item[Altura] M\'aximo nivel
 \end{description}
 
+\subsection{\'Arboles Particulares}
+\begin{description}
+    \item[$\mathcal{N}$-ario] $\forall v \in V \talque g^-(v) \leq \mathcal{N}$
+    \item[$\mathcal{N}$-ario regular] $\forall v \in V \talque g(v)=0 \lor g(v)=\mathcal{N}$
+    \item[$\mathcal{N}$-ario regular pleno \emph{o completo}] $\mathcal{N}$=ario regular donde  todas las hojas se hallan en el mismo nivel
+\end{description}
+
+\subsection{Recorrido de \'Arboles}
+\begin{description}
+    \item[Orden previo \emph{o pre-orden}] Notaci\'on polaca
+		\begin{enumerate}
+      		\item Nomrar la raiz
+      		\item Recorre el sub-\'arbol izquierdo
+            \item Recorre el sub-\'arbol derecho
+    	\end{enumerate}
+    \item[Orden simetrico \emph{o in-orden}] Notaci\'on usual o infija
+		\begin{enumerate}
+      		\item Recorre el sub-\'arbol izquierdo
+            \item Nomrar la raiz
+            \item Recorre el sub-\'arbol derecho
+    	\end{enumerate}
+    \item[Orden posterior \emph{o post-orden}] Notaci\'on polaca inversa
+		\begin{enumerate}
+      		\item Recorre el sub-\'arbol izquierdo
+            \item Recorre el sub-\'arbol derecho
+            \item Nomrar la raiz
+    	\end{enumerate}
+\end{description}
 
 \end{document}

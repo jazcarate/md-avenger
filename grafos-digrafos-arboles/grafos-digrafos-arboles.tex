@@ -18,7 +18,7 @@
 
 %\newcommand{\refa}[1]{\textsuperscript{\textsf{[\ref{#1}]}}} %Referencias
 \newcommand{\refa}[1]{}
-
+\newcommand{\talque}{\;:\,} % En castellano se puede usar ":" o "/"
 %----------------------------------------------------------------------------------------
 %	Titulo
 %----------------------------------------------------------------------------------------
@@ -51,43 +51,43 @@ Un grafo se describe con una terna $(V,A,\varphi)$, siendo:
 \begin{itemize}
 	\item $V$: Conjunto de v\'ertices
     \item $A$: Conjunto de aristas
-    \item $\varphi$: $A \to \mathcal{V} \subseteq  \{x\in \mathcal{P}(V): |x|=2\} $
+    \item $\varphi$: $A \to \mathcal{V} \subseteq  \big\{ x\in \mathcal{P}(V): |x| \in \{1, 2\}\big\} $
 \end{itemize}
 
 \subsection{V\'ertices}
 \begin{description}
-	\item[V\'ertices Adyacentes] $v_i$ es adyacente a $v_j \iff \exists a_k \in A / \varphi(a_k)=\{v_i,v_j\}$
-    \item[V\'ertices Aislados] $v_k$ es aislado $\iff \not \exists a_k \in A / v_k \in \varphi(a_k)$
-    \item[Istom]\label{istmo} $v$ es istmo $\iff G$ es conexo\refa{conexo} $\Rightarrow G' = (V - \{v\},A,\varphi)$ no es conexo\refa{conexo}
+	\item[V\'ertices adyacentes] $v_i$ es adyacente a $v_j \iff \exists a_k \in A \talque \varphi(a_k)=\{v_i,v_j\}$
+    \item[V\'ertices aislados] $v_k$ es aislado $\iff \not \exists a_k \in A \talque v_k \in \varphi(a_k)$
+    \item[Istom]\label{istmo} $v$ es istmo $\iff G$ es conexo\refa{conexo} $\Rightarrow G' = (V - \{v\},A,\varphi/_{V-\{v\}})$ no es conexo\refa{conexo}
 \end{description}
 
 \subsection{Aristas}
 \begin{description}
-	\item[Aristas Paralelas]\label{paralela} $a_i$ es paralela a $a_j \iff \varphi(a_i) = \varphi(a_J)$
-    \item[Aristas Adyacentes]\label{adyacente} $a_i$ es adyacente a $a_j \iff \exists v_k \in V / v_k \in \varphi(a_i) \land v_k \in \varphi (a_j)$
-    \item[Bucle \emph{o lazo}]\label{bucle} $a_k$ es un bucle $\iff \varphi(a_k) = \{v,v\}$
+	\item[Aristas paralelas]\label{paralela} $a_i$ es paralela a $a_j \iff \varphi(a_i) = \varphi(a_j)$
+    \item[Aristas adyacentes]\label{adyacente} $a_i$ es adyacente a $a_j \iff \\ \iff \exists v_k \in V \talque v_k \in \varphi(a_i) \land v_k \in \varphi (a_j)$
+    \item[Bucle \emph{o lazo}]\label{bucle} $a_k$ es un bucle $\iff |\varphi(a_k)| = 1$
     \item[Aristas incidentes a un v\'ertice]\label{incidente} $a_i$ y $a_j$ son incidentes en el v\'ertice $v \iff \\ \iff v \in \varphi(a_i) \land v \in \varphi(a_j)$
-    \item[Grado o \emph{valencia} de un v\'ertice]\label{grado} $g: V \to \mathbb{Z} / g(v_i) = $ cantidad de aristas incidentes\refa{incidente}\\
+    \item[Grado o \emph{valencia} de un v\'ertice]\label{grado} $g: V \to \mathbb{Z} \talque g(v_i) = $ cantidad de aristas incidentes\refa{incidente}\\
     	\emph{Nota: Los bucles se cuentan doblemente}
         $$
         	\sum_i g(v_i) = 2 |A|
         $$
 	\item[Puente]\label{puente} $a$ es puente $\iff G$ es conexo\refa{conexo} $\Rightarrow G'=(V,A-\{a\},\varphi/_{A-\{a\}) }$ no es conexo\refa{conexo}
     \item[Conjunto desconectante]\label{desconectante} Un conjunto de puentes\refa{puente}
-    \item[Conjunto de Corte] M\'inimo conjunto desconectante\refa{desconectante}
+    \item[Conjunto de corte] M\'inimo conjunto desconectante\refa{desconectante}
 \end{description}
 
 \subsection{Grafos Particulares}
 \begin{description}
-	\item[Grafo Simple] No tiene aristas paralelas\refa{paralela} ni bucles\refa{bucle}
-    \item[Grafo $K$-Regular] $G$ es $K$-Regular $\iff K \in \mathbb{N}_0 \land \forall v \in V : g(v) = k$
-    \item[Grafo Completo] $(K_n) \; \forall v,w \in V : v \not = w \Rightarrow \exists a \in A : \varphi(a) = \{v, w\}$
-    \item[Grafo Bipartito] $V = V_1 \bigcup V_2; \; V_1 \not = \phi \land V_2 \not = \phi \land V_1 \bigcup V_2 \not = \phi \land \forall a_i \in A: \varphi(a_i)=\{v_j, v_k\}/ \\ v_j \in V_1 \land v_k \in V2$
-    \item[Subgrafos]\label{subgrafo} $G' = (V', A', \varphi/_{A'}) \;/\;V' \subseteq V, A' \subseteq A$
-    \item[Componente Conexa]\label{componente conexa} Son las clases de equivalencia de la relaci\'on $R: v_i R v_k \iff \exists$ un camino\refa{camino} de $v_i$ a $v_j \lor v_i = v_j$
+	\item[Grafo simple] No tiene aristas paralelas\refa{paralela} ni bucles\refa{bucle}
+    \item[Grafo $K$-regular] $G$ es $K$-Regular $\iff K \in \mathbb{N}_0 \land \forall v \in V : g(v) = k$
+    \item[Grafo completo] $(K_n) \; \forall v,w \in V, v \not = w, \exists a \in A \talque \varphi(a) = \{v, w\}$
+    \item[Grafo bipartito] $V = V_1 \bigcup V_2, \; V_1 \not = \phi \land V_2 \not = \phi \land \forall a_i \in A \talque \\ \varphi(a_i)=\{v_j, v_k\},\; v_j \in V_1 \land v_k \in V2$
+    \item[Subgrafos]\label{subgrafo} $G' = (V', A', \varphi/_{A'}) \talque V' \subseteq V \land A' \subseteq A$
+    \item[Componente conexa]\label{componente conexa} Son las clases de equivalencia de la relaci\'on $R: v_i R v_k \iff \\ \iff \exists$ un camino\refa{camino} de $v_i$ a $v_j \lor v_i = v_j$
     \item[Grafo Conexo] \label{conexo}Un grafo con una \'unica componente conexa\refa{componente conexa}
     \item[Conectividad] El menor n\'umero de istmos\refa{istmo}
-    \item[Grafos Planos] Grafo que se puede dibujar sin que se crucen aristas
+    \item[Grafos planos] Grafo que se puede dibujar sin que se crucen aristas
 \end{description}
 
 \subsection{Caminos y Cliclos}
@@ -95,20 +95,21 @@ Un grafo se describe con una terna $(V,A,\varphi)$, siendo:
 	\item[Camino]\label{camino} Sucesi\'on de aristas adyacentes\refa{adyacente} distintas
     \item[Ciclo \emph{o circuito}]\label{ciclo} Camino\refa{camino} cuyo v\'ertice inicial conicide con el final
     \item[Longitud] Cantidad de aristas que componen un camino\refa{camino}
-    \item[Camino Simple]\label{camino simple} Camino\refa{camino} con todos los v\'ertices distintos
-    \item[Camino/Ciclo hamiltoniano] Camino\refa{camino}/Ciclo\refa{ciclo} que pasa por \emph{todos} los v\'ertices \emph{una sola vez}
-    \item[Camino Euleriano] Camino\refa{camino} que pasa por \emph{todas} las aristas \emph{una sola vez}
+    \item[Camino simple]\label{camino simple} Camino\refa{camino} con todas sus aristas distintas
+   \item[Camino elemental] Camino\refa{camino} con todos sus v\'ertices distintos
+   \item[Camino euleriano] Camino\refa{camino} que pasa por \emph{todas} las aristas \emph{una sola vez}
     	\\ CNyS:
         	\begin{itemize}
-            	\item Ser Conexo\refa{conexo}
+            	\item Ser conexo\refa{conexo}
                 \item $\forall v_i : g(v_i) = 2k; k \in \mathbb{n}$ o a lo sumo dos v\'ertices de grado\refa{grado} impar
             \end{itemize}
-    \item[Ciclo euleriano] Ciclo\refa{ciclo} que pasa por \emph{todas} las aristas \emph{una sola vez}
+   \item[Ciclo euleriano] Ciclo\refa{ciclo} que pasa por \emph{todas} las aristas \emph{una sola vez}
         	\\ CNyS:
         	\begin{itemize}
             	\item Ser Conexo\refa{conexo}
                 \item $\forall v_i : g(v_i) = 2k$
             \end{itemize}
+	\item[Camino/Ciclo hamiltoniano] Camino\refa{camino}/Ciclo\refa{ciclo} que pasa por \emph{todos} los v\'ertices \emph{una sola vez}   
 \end{description}
 
 \subsection{Representaci\'on Matricial}
@@ -131,7 +132,7 @@ $
 
 \subsection{Isomorfismo}\label{isomorfo}
 Dado $G_1 = (V_1, A_1, \varphi_1)$ y $G_2 = (V_2, A_2, \varphi_2)$ \\
-$G_1$ es isomorfo a $G_1 \iff \exists f:V_1 \to V_2 \land h: A_1 \to A_2$ ambas funciones biyectivas y $\forall a \in A_1 :\; \varphi_2( \;h(a) \;) = f(\; \varphi(a) \;)$
+$G_1$ es isomorfo a $G_1 \iff \exists f:V_1 \to V_2 \land h: A_1 \to A_2$ ambas funciones biyectivas y $\forall a \in A_1 \talque \varphi_2( \;h(a) \;) = f(\; \varphi(a) \;)$
 
 \subsection{Teorema de Kuratowski}
 Un grafo es plano $\iff$ no contiene ning\'un subgrafo\refa{subgrafo} isomorfo\refa{isomorfo} al $K_{3,3}$ o al $K_5$
@@ -150,48 +151,52 @@ Un grafo se describe con una terna $(V,A,\delta )$, siendo:
     \item $\delta $: $A \to VxV$
 \end{itemize}
 
-\subsection{Grado}
+\subsection{Aristas}
 \begin{description}
-	\item[Grado Positivo ($g^+$)] Cantidad de aristas que ``entran'' al v\'ertice
-    \item[Grado Negativo ($g^-$)] Cantidad de aristas que ``salen'' del v\'ertice
-    \item[Grado Total ($g$)] $g^+ + g^-$
-    \item[Grado Neto ($g_N$)] $g^+ - g^-$
+	\item[Aristas paralelas] $a_i$ es paralela a $a_j \iff \delta(a_i) = \delta(a_j)$
+    \item[Aristas antiparalelas] $a_i$ es antiparalela a $a_j \iff \\ \iff \delta(a_i) = (v_1, v_2) \Rightarrow  \delta(a_j) = (v_2, v_1)$
+    \item[Aristas adyacentes] $a_i$ es adyacente a $a_j \iff \\ \iff \exists v_k \in V \talque \delta(a_i) = (x, v_k) \land \delta (a_j) = (v_k, y) \lor a_j$ es adyacente a $a_i$
+    \item[Bucle \emph{o lazo}] $a_k$ es un bucle $\iff \delta(a_k) = (v,v)$
+	\item[Grado positivo ($g^+$)] Cantidad de aristas que ``\emph{entran}'' al v\'ertice
+    \item[Grado negativo ($g^-$)] Cantidad de aristas que ``\emph{salen}'' del v\'ertice
+    \item[Grado total ($g$)] $g^+ + g^-$
+    \item[Grado neto ($g_N$)] $g^+ - g^-$
     \item[Pozo] $g^-(v) = 0$
     \item[Fuente] $g^+(v) = 0$
 \end{description}
 
-\subsection{Grafo asociado}
-Dado el D\'igrafo $(V,A,\delta)$, se define el Grafo asociado $(V,A,\phi)$, tal que:
+\subsection{Grafo Asociado}
+Dado el d\'igrafo $(V,A,\delta)$, se define el grafo asociado $(V,A,\varphi)\talque$
 $$
-	\forall a_i \in A,\; \phi(a_i) = \{Primero(\delta(a_i)), Segundo(\delta(a_i))\}
+	\forall a_i \in A,\; \varphi(a_i) = \{Primero(\delta(a_i)), Segundo(\delta(a_i))\}
 $$
 
-\subsection{D\'igrafos}
+\subsection{D\'igrafos Particulares}
 \begin{description}
-	\item[D\'igrafos Conexo] Aquel cuyo grafo asociado sea conexo\refa{conexo}
-    \item[D\'igrafos Fuertemente Conexo] $\exists$ camino\refa{camino} entre todo par de v\'ertices
+	\item[D\'igrafos conexo] Aquel cuyo grafo asociado sea conexo\refa{conexo}
+    \item[D\'igrafos fuertemente conexo] $\exists$ Camino\refa{camino} entre todo par de v\'ertices
 \end{description}
 
 \subsection{Caminos y Ciclos}
 Se debe respetar el sentido de las aristas
 \begin{description}
-	\item[Ciclo de Euler] CNyS: $\forall v \in V \;: g^+(v) = g^-(v)$
+	\item[Ciclo euleriano] CNyS: $\forall v \in V \;: g^+(v) = g^-(v)$
 \end{description}
 
 \subsection{Representaci\'on Matricial}
 \begin{description}
 	\item[Matriz de incidencia] $Ma_{ij}^{|V|x|A|} = \left\{
 \begin{array}{c l}
- 1 & \exists v_x \in V / \delta(a_j) = (v_i, v_x)\\
- -1 & \exists v_x \in V / \delta(a_j) = (v_x, v_i)\\
+ 1 & \exists v_x \in V \talque \delta(a_j) = (v_i, v_x)\\
+ -1 & \exists v_x \in V \talque \delta(a_j) = (v_x, v_i)\\
  0 & \textup{si $v_i$ no es extremo de } a_j\\
 \end{array}
 \right.
 $
     \item[Matriz de adyacencia]$Ma_{ij}^{|V|x|V|} = \left\{
 \begin{array}{c l}
- 1 & \exists a \in A \;: \delta(a) = (v_i, v_j)\\
- 0 & \not \exists a \in A \;: \delta(a) = (v_i, v_j)\\
+ 1 & \exists a \in A \talque \delta(a) = (v_i, v_j)\\
+ 0 & \not \exists a \in A \talque \delta(a) = (v_i, v_j)\\
 \end{array}
 \right.
 $
@@ -212,7 +217,7 @@ Grafo conexo y sin ciclos\\
 	\item[Hoja] $g(v) = 1$
     \item[Antecesor] $v$ es antecesor de $w \iff \exists ! $ camino simple\refa{camino simple} de $v$ a $w$
     \item[Sucesor] $v$ es sucesor de $w \iff w$ es antecesor de $v$
-    \item[Padre] $v$ es padre de $w \iff \exists a_k \;/ \varphi(a_k) = \{v, w\}$
+    \item[Padre] $v$ es padre de $w \iff \exists a_k \talque \varphi(a_k) = \{v, w\}$
     \item[Hijo] $v$ es hijo de $w \iff w$ es padre de $v$
     \item[Hermanos] $v$ es hermano de $w \iff v \land w$ tienen el mismo padre
     \item[Nivel] Cuantos padres tiene hasta llegar a la raiz
